@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dog Welfare Hub</title>
+
+ <style>
+body{
+margin:0;
+padding:0;
+font-family:Georgia, sans-serif;
+background-color:white;
+overflow:hidden;
+}
+
+.slide{
+width:100%;
+height:100vh;
+display:none;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+padding:30px;
+box-sizing:border-box;
+animation:fade 0.8s ease;
+}
+
+.active{
+display:flex;
+}
+
+h1{
+font-size:40px;
+color:black;
+}
+
+h2{
+color:darkblue;
+}
+
+select{
+padding:10px;
+margin:10px;
+border:2px solid black;
+border-radius:8px;
+}
+
+button{
+padding:10px 20px;
+margin-top:15px;
+background-color:orange;
+border:none;
+border-radius:10px;
+font-weight:bold;
+cursor:pointer;
+}
+
+button:hover{
+background-color:gold;
+}
+
+#dogInfo{
+margin-top:20px;
+padding:15px;
+border:2px solid darkblue;
+background-color:pink;
+width:70%;
+border-radius:10px;
+}
+
+@keyframes fade{
+from{opacity:0;}
+to{opacity:1;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="slide active" id="slide1">
+<h1>Dog Welfare Hub</h1>
+<button onclick="nextSlide(2)">Start</button>
+
+<p>Dogs are friendly and loyal animal in the world,
+its is also called as humans best friend.</p>
+<p>The scientific name of dog is <b>CANIS LIPUS FAMILIARIS</b></p>
+</div>
+
+<div class="slide" id="slide2">
+<h2>Select Details</h2>
+
+<select id="breed">
+<option>Labrador</option>
+<option>German Shepherd</option>
+<option>Golden Retriever</option>
+<option>Pug</option>
+<option>Beagle</option>
+<option>Rottweiler</option>
+</select>
+
+<select id="age">
+<option>Puppy</option>
+<option>Adult</option>
+<option>Senior</option>
+</select>
+
+<select id="gender">
+<option>Male</option>
+<option>Female</option>
+</select>
+
+<button onclick="showResult()">Show Info</button>
+</div>
+
+<div class="slide" id="slide3">
+<h2>Dog Information</h2>
+<div id="dogInfo"></div>
+<button onclick="nextSlide(2)">Back</button>
+</div>
+
+<script>
+function nextSlide(num){
+document.querySelectorAll('.slide').forEach(function(s){
+s.classList.remove('active');
+});
+document.getElementById('slide'+num).classList.add('active');
+}
+
+function showResult(){
+
+let breed=document.getElementById("breed").value;
+let age=document.getElementById("age").value;
+let gender=document.getElementById("gender").value;
+
+let info="";
+
+if(breed==="Labrador"){
+info+="Labrador: Friendly, active, loves outdoor games. ";
+}
+else if(breed==="German Shepherd"){
+info+="German Shepherd: Brave, intelligent, protective. ";
+}
+else if(breed==="Golden Retriever"){
+info+="Golden Retriever: Gentle, loyal, family loving. ";
+}
+else if(breed==="Pug"){
+info+="Pug: Small, playful, indoor friendly. ";
+}
+else if(breed==="Beagle"){
+info+="Beagle: Energetic, curious, loves exploring. ";
+}
+else if(breed==="Rottweiler"){
+info+="Rottweiler: Strong, confident, good guard dog. ";
+}
+
+if(age==="Puppy"){
+info+="Puppy: Needs vaccines, small meals, basic training. ";
+}
+else if(age==="Adult"){
+info+="Adult: Needs daily exercise and balanced diet. ";
+}
+else if(age==="Senior"){
+info+=" Senior: Needs soft food and regular checkups. ";
+}
+
+if(gender==="Male"){
+info+=" Male: Slightly territorial, playful energy. ";
+}
+else if(gender==="Female"){
+info+=" Female: Calm nature, needs care during heat cycle. ";
+}
+
+info+=" Care: Provide clean water and daily attention. ";
+info+=" Food: Give protein-rich balanced diet. ";
+info+=" Avoid chocolate and junk food.";
+
+document.getElementById("dogInfo").innerHTML=
+"<b>Breed:</b> "+breed+"<br>"+
+"<b>Age:</b> "+age+"<br>"+
+"<b>Gender:</b> "+gender+"<br><br>"+
+info;
+
+nextSlide(3);
+}
+</script>
+
+</body>
+</html>
